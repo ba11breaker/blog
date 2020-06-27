@@ -1,4 +1,4 @@
 ---
-title: React, Not Only a framework
+title: React
 lang: en-US
 ---

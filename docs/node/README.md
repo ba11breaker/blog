@@ -1,5 +1,5 @@
 ---
-title: Why Node?
+title: NodeJS
 lang: en-US
 ---
-# Why Node?
+# What is Node?
