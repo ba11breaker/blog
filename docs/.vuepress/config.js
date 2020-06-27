@@ -1,4 +1,5 @@
 module.exports = {
+    base: '/blog/',
     title: 'Hongyu Zhao’s Space',
     description: 'Focus on Node.js and Golang, From Front End to Computer System',
     themeConfig:{
