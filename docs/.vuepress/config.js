@@ -8,13 +8,14 @@ module.exports = {
             { text: "Node", link: "/node/" },
             { text: "Computer Science", 
                 items: [
-                    {text: "Golang", link: "/golang/"}
+                    {text: "OS", link: "/operating system/"},
+                    {text: "Golang", link: "/golang/"},
                 ]
             },
             { text: "Front End", 
                 items: [
-                    { text: "React", link: "/react/" },
-                    { text: "Angular", link: "/angular/" }
+                    { text: "Angular", link: "/angular/" },
+                    { text: "React", link: "/react/" }
                 ]
             },
             { text: "Github", link: "https://github.com/ba11breaker" },
@@ -26,6 +27,9 @@ module.exports = {
             ],
             "/golang/":[
                 ["", "Start Golang"]
+            ],
+            "/operating system": [
+                ["", "Operating System"]
             ],
             "/angular/":[
                 ["", "Start Angular"]

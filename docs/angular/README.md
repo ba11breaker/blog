@@ -19,3 +19,5 @@ ng serve --open
 ```
 
 This command will launches the server ,rebuilds the app and automatically opens your browser to http://localhost:4200/.
+
+![An image](../.vuepress/public/angular-start.png)
