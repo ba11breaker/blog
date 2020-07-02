@@ -5,11 +5,15 @@ module.exports = {
     themeConfig:{
         nav: [
             { text: "Home", link: "/" },
-            { text: "Node", link: "/node/" },
+            { text: "Back End", 
+                items: [
+                    {text: "node", link: "/node/"},
+                    {text: "dotnet", link: "/dotnet/"}
+                ]
+            },
             { text: "Computer Science", 
                 items: [
                     {text: "OS", link: "/operating system/"},
-                    {text: "Golang", link: "/golang/"},
                 ]
             },
             { text: "Front End", 
