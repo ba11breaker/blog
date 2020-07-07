@@ -1,6 +1,6 @@
 module.exports = {
     base: '/blog/',
-    title: 'Hongyu Zhao’s Space',
+    title: 'Alex Zhao’s Space',
     description: 'Focus on Web Development, From Front End to Computer System',
     themeConfig:{
         nav: [
@@ -27,10 +27,10 @@ module.exports = {
         sidebar: {
             "/node/":[
                 ["", "Start Node.js"],
-                ["module", "Module of Node.js"]
+                ["koa1", "Koa in Action"],
             ],
-            "/golang/":[
-                ["", "Start Golang"]
+            "/dotnet/":[
+                ["", "Start .Net"]
             ],
             "/operating system": [
                 ["", "Operating System"]
