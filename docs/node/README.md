@@ -3,6 +3,7 @@ title: NodeJS
 lang: en-US
 ---
 # Start Node.js
+---
 Javascript is a script language, all script languages need a parser to run. For javascript in HTML page, the browser plays the role of a parser. But for independent javascript, NodeJS is such kind of parser.
 
 The functionality of javascript running in NodeJS is to manipulate disk file or build an HTTP server. NodeJS provides corresponding build-in objects such as fs and http.
@@ -12,6 +13,7 @@ The author of NodeJS said that the purpose of creating NodeJS is to achieve a hi
 As he wished, NodeJS became active on the server side, and a large number of Web services based on NodeJS appeared. On the other hand, NodeJS makes the front-end public an artifact, and finally can let its ability coverage jump out of the browser window, and a larger number of front-end tools have sprung up.
 
 ### Run NodeJS
+---
 Open the terminal, enter 'node' into command line, write a line of javascripte codes and run it immediately. 
 ``` js
 $ node
@@ -20,6 +22,7 @@ Hello World!
 ```
 
 ### Permissions Issue
+---
 In Linux syste, using NodeJS to listen 80 or 443 port need root power, there are two methods.
 
 One way is to use sudo command run NodeJS. It is more recommended.

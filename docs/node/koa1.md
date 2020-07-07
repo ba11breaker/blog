@@ -3,6 +3,7 @@ title: koa1
 lang: en-US
 ---
 # Koa in Action 1: Start Application
+---
 In the following articles, we will develop a back-end web application based on
 Koa.js. 
 
@@ -14,6 +15,7 @@ batabase system. We will also use the JWT to implement authentication and RESTfu
 interface to construct apis.
 
 ### RESTful API
+---
 REST, stands for **Representational State Transfer**, which is an architectural style and approach to communications often used in web services development. 
 
 There are six Architecture Constraints in RESTful API:
@@ -41,6 +43,7 @@ There are some normal rules in RESTful API design we must follow:
 4. For those requests are not CRUD, use POST/action/sub-resource
 
 ### Start Koa
+---
 Koa is a new web framework designed by the team behind Express, which aims to be a smaller, more expressive, and more robust foundation for web applications and APIs. 
 
 Three charactersitcs in Koa:
@@ -80,6 +83,7 @@ node index.js
 Open your browser and visit **http://localhost:3000** and you can see the 'Hello World'.
 
 ### Onion Model
+---
 Try to write a new middleware function in **index.js**.
 ``` js
 app.use((ctx) => {

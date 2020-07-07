@@ -28,6 +28,7 @@ module.exports = {
             "/node/":[
                 ["", "Start Node.js"],
                 ["koa1", "Koa in Action(1): Start Application"],
+                ["koa2", "Koa in Action(2): More Koa"]
             ],
             "/dotnet/":[
                 ["", "Start .Net"]
