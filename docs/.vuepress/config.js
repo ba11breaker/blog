@@ -27,7 +27,7 @@ module.exports = {
         sidebar: {
             "/node/":[
                 ["", "Start Node.js"],
-                ["koa1", "Koa in Action"],
+                ["koa1", "Koa in Action(1): Start Application"],
             ],
             "/dotnet/":[
                 ["", "Start .Net"]
