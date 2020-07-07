@@ -20,7 +20,7 @@ Hello World!
 ```
 
 ### Permissions Issue
-In Linux syste,, using NodeJS to listen 80 or 443 port need root power, there are two methods.
+In Linux syste, using NodeJS to listen 80 or 443 port need root power, there are two methods.
 
 One way is to use sudo command run NodeJS. It is more recommended.
 ``` 
