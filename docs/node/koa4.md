@@ -58,5 +58,7 @@ status is '500'. You will find the error stack in the console.
 ReferenceError: test is not defined
 ...
 ```
-But the native error process in Koa is not enough because we hope all response can be formed as json
-for RESTful API.
+But the native error process in Koa is not enough because we hope all responses can be formed by json
+for RESTful API. In this way, we need to write middleware for error processing.
+
+
