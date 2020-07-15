@@ -86,3 +86,73 @@ usersRouter.post('/', (ctx) => {
     ctx.body = { name: 'lilei'};
 });
 ```
+
+### Send Http Response
+---
+We have already known how to write body and states in responses, and if you wanna set the header in response, 
+you con use `ctx.set()` method.
+``` js
+usersRouter.get('/', (ctx) => {
+    ctx.set('Allow', 'GET, POST');
+});
+```
+It will add an attribute `Allow: Get, POST` in the header of response.
+
+### Arrange Directory of RESTful
+First, we create an `app` directory to conatin all source code files in it, and one file `index.js` should be in 
+it. And then create a `routes` directory to contain the files to process URL request with three files which are 
+`index.js`, `home.js` and `users.js`.
+
+In the `app/routes/index.js`, we will write a method to import route methods in other two files automatically. 
+``` js
+const fs = require('fs');
+module.exports = (app) => {
+    fs.readdirSync(__dirname).forEach(file => {
+        if(file === 'index.js') {
+            return;
+        }
+        const route = require(`./${file}`);
+        app.use(route.routes()).use(route.allowedMethods());
+    });
+}
+```
+And we need to rewrite `app/index.js`.
+``` js
+const Koa = require('koa');
+const bodyparser = require('koa-bodyparser');
+const app = new Koa();
+const routing = require('./routes');
+
+app.use(bodyparser());
+routing(app);
+
+app.listen(3000, () => {
+    console.log('We are lisitening at http://localhost:3000');
+});
+```
+Those route methods are arranged in `home.js` and `users.js`, and you can add
+new route method in the similar method without injecting it into the `app.use()`
+method manually.
+
+Apart from route methods, we also need to manage controllers. We add a `controller`
+directory in `app` directory, and create two files `home.js` and `users.js` in it.
+
+In `app/controllers/homes.js`, we can write like this:
+``` js
+class HomeController {
+    index(ctx) {
+        ctx.body= 'This is Home Page';
+    }
+}
+module.exports = new HomeController();
+```
+And in `app/routes/homes.js`, we can import the HomeController and use `index()` method.
+```js
+const Router = require('koa-router');
+const router = new Router();
+const HomeController = require('../controllers/home');
+
+router.get('/', HomeController.index);
+
+module.exports = router;
+```
