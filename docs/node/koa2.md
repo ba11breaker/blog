@@ -141,11 +141,11 @@ app.listen(3000);
 
 ### Options request in Koa
 OPTIONS http request could be used to show the allowed http request methods
-in specific URL. Let's how to set OPTIONS method in Koa where we can use
+in specific URL. Let's see how to set OPTIONS method in Koa where we can use
 `AllowMethods` method.
 ``` js
 app.use(usersRouter.allowedMethods());
 ```
 Request **http://localhost:3000/users** in OPTIONS method, you will find **HEAD**, **GET** 
 and **POST** are allowed in the head of response. And if you request this url in other methods
-that are not allowed, it will return **'405'** or **'501'**;
+that are not allowed, it will return **'405'** or **'501'**.
