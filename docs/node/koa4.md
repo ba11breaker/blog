@@ -61,4 +61,34 @@ ReferenceError: test is not defined
 But the native error process in Koa is not enough because we hope all responses can be formed by json
 for RESTful API. In this way, we need to write middleware for error processing.
 
+### Write Middleware for Error
+---
+It is very simple to write such a middleware, we can write a middleware in front of all middlewares functions in
+`app/index.js` and use try catch structure.
+```js
+app.use(async (ctx, next) => {
+    try {
+        await next();
+    } catch(err) {
+        ctx.status = err.status || err.statusCode;
+        ctx.body = {
+            message: err.message,
+            status: err.status
+        };
+    }
+});
+app.use(bodyparser());
+routing(app);
 
+app.listen(3000, () => {
+    console.log('We are lisitening at http://localhost:3000');
+});
+```
+Now that if you request **http://localhost:3000\users\2432534524**, it will return
+a json with **412** status: 
+```json
+{
+    "message": "Precondition Failed",
+    "status": 412
+}
+```
