@@ -70,10 +70,10 @@ app.use(async (ctx, next) => {
     try {
         await next();
     } catch(err) {
-        ctx.status = err.status || err.statusCode;
+        ctx.status = err.status || err.statusCode || 500;
         ctx.body = {
             message: err.message,
-            status: err.status
+            status: ctx.status
         };
     }
 });
@@ -92,3 +92,59 @@ a json with **412** status:
     "status": 412
 }
 ```
+
+### Koa-json-error
+---
+We have implemented middleware for error processing ourselves and then I recommend a module called 
+`koa-json-error` to help us in real world development.
+
+First, install `koa-json-error` using npm.
+```bash
+npm i koa-json-error --save
+```
+And then, we import it into `app/index.js` and use it in the method `app.use()`.
+```js
+const error = require('koa-json-error');
+
+app.use(error());
+```
+To test it, we request **http://localhost:3000\users\2432534524**, it will return a json with
+status and error statck.
+```json
+{
+    "message": "Precondition Failed",
+    "name": "PreconditionFailedError",
+    "stack": "PreconditionFailedError: Precondition Failed\n    at Object.throw (D:\\repository\\koa-repo\\quora-api\\node_modules\\koa\\lib\\context.js:97:11)\n    at findById (D:\\repository\\koa-repo\\quora-api\\app\\controllers\\users.js:12:22)\n    at dispatch (D:\\repository\\koa-repo\\quora-api\\node_modules\\koa-compose\\index.js:42:32)\n    at D:\\repository\\koa-repo\\quora-api\\node_modules\\koa-router\\lib\\router.js:368:16\n    at dispatch (D:\\repository\\koa-repo\\quora-api\\node_modules\\koa-compose\\index.js:42:32)\n    at D:\\repository\\koa-repo\\quora-api\\node_modules\\koa-compose\\index.js:34:12\n    at dispatch (D:\\repository\\koa-repo\\quora-api\\node_modules\\koa-router\\lib\\router.js:373:31)\n    at dispatch (D:\\repository\\koa-repo\\quora-api\\node_modules\\koa-compose\\index.js:42:32)\n    at allowedMethods (D:\\repository\\koa-repo\\quora-api\\node_modules\\koa-router\\lib\\router.js:429:12)\n    at dispatch (D:\\repository\\koa-repo\\quora-api\\node_modules\\koa-compose\\index.js:42:32)",
+    "status": 412
+}
+```
+But it is not safe to show so many error information in prodcution environment, so we neet to de some configuration in `app/index.js`.
+```js
+const Koa = require('koa');
+const bodyparser = require('koa-bodyparser');
+const error = require('koa-json-error');
+const app = new Koa();
+const routing = require('./routes');
+
+app.use(error({
+    postFormat: (err, { stack, ...rest }) => {
+        return process.env.NODE_ENV === 'production'
+        ? rest : { stack, ...rest }
+    }
+}));
+app.use(bodyparser());
+routing(app);
+
+app.listen(3000, () => {
+    console.log('We are lisitening at http://localhost:3000');
+});
+```
+In windows platform, if you want to run the application in production environment more 
+conveniently, you can install a module called `cross-env`. Remember save it in dev dependencies.
+```bash
+npm i cross-env --save-dev
+```
+You can use the command `cross-env NODE_ENV=production node app` to run the application in prodcution
+environment. In other OS, you can directly run command `NODE_ENV=prodcution node app` to run it.
+
+
