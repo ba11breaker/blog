@@ -33,7 +33,8 @@ module.exports = {
                 ["koa4", "Koa in Action(4): Error in Koa"]
             ],
             "/dotnet/":[
-                ["", "Start .Net"]
+                ["", "Start ASP.Net Core"],
+                ["mysql-in-asp.net.core", "How to use MySql in ASP.Net Core 3"]
             ],
             "/operating system": [
                 ["", "Operating System"]
