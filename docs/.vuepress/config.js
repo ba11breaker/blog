@@ -34,7 +34,7 @@ module.exports = {
             ],
             "/dotnet/":[
                 ["", "Start ASP.Net Core"],
-                ["mysql-in-asp.net.core", "How to use MySql in ASP.Net Core 3"]
+                ["mysql-in-asp.net.core", "How to connect MySql in ASP.Net Core 3"]
             ],
             "/operating system": [
                 ["", "Operating System"]
