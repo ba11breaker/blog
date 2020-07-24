@@ -1,5 +1,5 @@
 ---
-title: koa3
+title: koa4
 lang: en-US
 ---
 # Koa in Action 4: Error in Koa
@@ -147,4 +147,53 @@ npm i cross-env --save-dev
 You can use the command `cross-env NODE_ENV=production node app` to run the application in prodcution
 environment. In other OS, you can directly run command `NODE_ENV=prodcution node app` to run it.
 
+### Koa-parameter
+We can install `koa-parameter` to check the parameter in http request body.
+```bash
+npm i koa-parameter --save
+```
+After installation, we need to register it in `app\index.js`.
+```js
+const parameter = require('koa-parameter');
+app.use(parameter(app));
+```
 
+If we wanna check whether the body in a http request is what we want, we can
+use this middleware in controller functions. For example, we hope the request to
+create a user contains **name** and **age** attributes and **name** is compulsory,
+we can use `ctx.verifyParams()`.
+```js
+create(ctx) {
+    ctx.verifyParams({
+        name: {
+            type: 'string',
+            required: true,
+        },
+        age: {
+            ype: 'number',
+            required: false,
+        }
+    });
+    db.push(ctx.request.body);
+    ctx.body = ctx.request.body;
+}
+```
+
+If request doesn't satisfy the requirements and the system will return **422** status code
+and error messages.
+
+```json
+{
+    "message": "Validation Failed",
+    "errors": [
+        {
+            "message": "should be a string",
+            "code": "invalid",
+            "field": "name"
+        }
+    ],
+    "params": {
+        "name": 123
+    }
+}
+```
