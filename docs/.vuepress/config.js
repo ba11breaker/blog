@@ -32,6 +32,7 @@ module.exports = {
                 ["koa3", "Koa in Action(3): Koa Controller"],
                 ["koa4", "Koa in Action(4): Error in Koa"],
                 ["koa5", "Koa in Action(5): MongoDB and Koa"],
+                ["koa6", "Koa in Action(6): JWT"],
             ],
             "/dotnet/":[
                 ["", "Start ASP.Net Core"],

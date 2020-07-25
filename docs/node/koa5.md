@@ -49,5 +49,54 @@ module.exports = model('User', userSchema);
 ```
 
 You can use `Schema` class imported from mongoose to set the schema of a special document and use
-`model` function to create a User model class.
+`model` function to create a User model class. Then we will rewrite the CRUD api for users model.
 
+```js
+const User = require('../models/users');
+class UsersController {
+    async find(ctx) {
+        ctx.body = await User.find();
+    }
+    async findById(ctx) {
+        const user = await User.findById(ctx.params.id);
+        if(!user) {
+            ctx.throw(404, 'User not found');
+        }
+        ctx.body = user;
+    }
+    async create(ctx) {
+        ctx.verifyParams({
+            name: {
+                type: 'string',
+                required: true,
+            }
+        });
+        const user = await new User(ctx.request.body).save();
+        ctx.body = user;
+    }
+    async update(ctx) {
+        ctx.verifyParams({
+            name: {
+                type: 'string',
+                required: true,
+            }
+        });
+        const user = await User.findByIdAndUpdate(ctx.params.id, ctx.request.body);
+        if(!user) {
+            ctx.throw(404, 'User not found');
+        }
+        ctx.body = user;
+    }
+    async delete(ctx) {
+        const user = await User.findByIdAndRemove(ctx.params.id);
+        if(!user) {
+            ctx.throw(404, 'User not found');
+        }
+        ctx.status = 204;
+    }
+}
+module.exports = new UsersController();
+```
+Using `User` class produced by `model()` method make controller much more simple and
+reduce code amount. We can use static functions like `User.find()`, `User.findById()`,
+constructor, `User.findByIdAndUpdate()` and so on to complete basic CRUD tasks.
