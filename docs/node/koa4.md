@@ -102,7 +102,7 @@ First, install `koa-json-error` using npm.
 ```bash
 npm i koa-json-error --save
 ```
-And then, we import it into `app/index.js` and use it in the method `app.use()`.
+And then, we import it into `app\index.js` and use it in the method `app.use()`.
 ```js
 const error = require('koa-json-error');
 
@@ -152,7 +152,7 @@ We can install `koa-parameter` to check the parameter in http request body.
 ```bash
 npm i koa-parameter --save
 ```
-After installation, we need to register it in `app\index.js`.
+After installation, we need to register it in `app/index.js`.
 ```js
 const parameter = require('koa-parameter');
 app.use(parameter(app));
